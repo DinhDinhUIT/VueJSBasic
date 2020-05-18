@@ -1,7 +1,6 @@
 <template>
   <div class="component">
-    <h3>Information User Details</h3>
-    <p>List Details</p>
+    <h1>UserEdit page</h1>
   </div>
 </template>
 

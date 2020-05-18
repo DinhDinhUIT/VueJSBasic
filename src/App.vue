@@ -1,18 +1,18 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <app-user></app-user>
-      </div>
-    </div>
+  <div>
+  <router-view name="page-header"></router-view>
+    <div class="container">
+      <h1 class="text-center">Vue Routing</h1>
+      <hr>
+      <router-view></router-view>
+   </div>
   </div>
 </template>
 
 <script>
-import User from './components/User.vue';
 export default {
   components: {
-    appUser: User
+
   }
 }
 </script>
