@@ -1,26 +1,64 @@
 <template>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">Logo</a>
-  
-  <ul class="navbar-nav">
-    <router-link active-class="active" exact  tag="li" class="nav-item" to="/" >
-        <a class="nav-link">Home</a>
-    </router-link>
-    <router-link active-class="active"  tag="li" class="nav-item" to="/user">
-        <a class="nav-link">User</a>
-    </router-link>
-  </ul>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbar1"
+              aria-controls="navbar1"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbar1">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link tag="a" class="nav-link" to="/">Home</router-link>
+          </li>
+          <li tag="a" v-if="auth==''" class="nav-item">
+            <router-link class="nav-link" to="/login">Login</router-link>
+          </li>
+          <li tag="a" v-if="auth==''" class="nav-item">
+            <router-link class="nav-link" to="/register">Register</router-link>
+          </li>
+          <li tag="a" v-if="auth=='loggedin'" class="nav-item">
+            <router-link class="nav-link" to="/profile">Profile</router-link>
+          </li>
+          <!-- <li v-if="auth=='loggedin'" class="nav-item">
+            <a class="nav-link" href="#" @click="logout" to="/">Logout</a>
+          </li> -->
+        </ul>
+      </div>
+    </nav>
 </template>
 
 <script>
+import EventBus from '../EventBus.vue';
+
+EventBus.$on('logged-in', test=>{
+  console.log(test);
+})
+
 export default {
-  components: {
-    
+  data(){
+    return {
+      auth: '',
+      user: ''
+    }
+  },
+  methods: {
+    logout(){
+      localStorage.removeItem('usertoken');
+    }
+  },
+  mounted() {
+    EventBus.$on('logged-in', status=>{
+      this.auth = status;
+    })
   }
 }
 </script>
 
 <style scoped>
- 
+
 </style>

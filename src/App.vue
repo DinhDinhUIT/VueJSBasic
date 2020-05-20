@@ -1,25 +1,20 @@
 <template>
-  <div>
-  <router-view name="page-header"></router-view>
-    <div class="container">
-      <h1 class="text-center">Vue Routing</h1>
-      <hr>
-      <router-view></router-view>
-   </div>
-  </div>
+    <div class="app">
+        <app-header></app-header>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-export default {
-  components: {
-
-  }
+import Header from './components/share/Header';
+export default{
+    name: 'App',
+    components: {
+      'app-header': Header
+    }
 }
 </script>
 
 <style scoped>
-  div.component{
-    border: 1px solid black;
-    padding: 30px;
-  }
+
 </style>
